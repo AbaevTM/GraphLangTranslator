@@ -2,7 +2,9 @@ package main.java.by.bsuir.course3.yapis.graphLangTranslator.logging;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.message.MessageType.*;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.message.LoggerMessage;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.message.LoggerMessageAdapter;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.message.LoggerMessageError;
@@ -23,9 +25,11 @@ public class LoggerDefault implements Logger {
 
 	@Override
 	public void printLog() {
+		System.out.println(StringConstant.SEPARATOR_STARS.getString());
 		for( LoggerMessage message : messages){
 			System.out.println(message);
 		}
+		System.out.println(StringConstant.SEPARATOR_STARS.getString());
 	}
 
 	@Override

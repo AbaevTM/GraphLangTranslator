@@ -1,0 +1,16 @@
+^^
+	GraphLang program example2.
+^^
+Boolean main (){	
+	if( x > 5 == false){
+		print("Something");
+	}
+	Int value16 = ( 5 + 3 ) * 2;
+	Int value21 = 2+5*3+4;
+	Int value49 = (2+5)*(3+4);
+	Real value = 10*2+20/4*8;
+	Real a = (Int)-50.431/(Int) fact(10)*(-5+3) + 10 * abs((someValue));
+	func1(func2(someNewFunction(value16)));
+	return false;
+}
+

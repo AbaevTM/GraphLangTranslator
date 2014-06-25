@@ -18,9 +18,8 @@ public class SemanticAnalyzerDefault implements SemanticAnalyzer {
 	}
 
 	@Override
-	public boolean analyze() {
+	public void analyze() {
 		// TODO Auto-generated method stub
-		return true;
 	}
 
 	@Override

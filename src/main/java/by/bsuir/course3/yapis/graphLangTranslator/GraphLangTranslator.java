@@ -1,5 +1,8 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator;
 
+import java.io.IOException;
+
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.semanticAnalysis.SemanticAnalyzer;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.syntaxAnalysis.SyntaxAnalyzer;
@@ -14,8 +17,12 @@ public interface GraphLangTranslator {
 	
 	public void setLogger( Logger logger);
 
-	public void translate();
+	public void translate() throws GraphLangSyntaxException, IOException;
 	
 	public void setTranslatedSourcePath( String translatedSourcePath );
+
+	public SyntaxAnalyzer getSyntaxAnalyzer();
+
+	public SemanticAnalyzer getSemanticAnalyzer();
 	
 }

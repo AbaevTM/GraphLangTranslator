@@ -1,18 +1,15 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling;
 
 import java.util.BitSet;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxExceptionRuntime;
+import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 
-public class GraphLangErrorListenerDefault implements GraphLangErrorListener {
-
-	private Logger logger;
-	
-	private ErrorObserver errorObserver;
+public class GraphLangErrorListenerDefault implements ANTLRErrorListener {
 	
 	@Override
 	public void reportAmbiguity(Parser arg0, DFA arg1, int arg2, int arg3,
@@ -32,18 +29,7 @@ public class GraphLangErrorListenerDefault implements GraphLangErrorListener {
 	@Override
 	public void syntaxError(Recognizer<?, ?> arg0, Object arg1, int arg2,
 			int arg3, String arg4, RecognitionException arg5) {
-		logger.addSyntaxErrorMessage(arg4, arg2, arg3);
-		errorObserver.errorOccurred();
-	}
-
-	@Override
-	public void setLogger(Logger logger) {
-		this.logger = logger;
-	}
-
-	@Override
-	public void setErrorObserver(ErrorObserver errorObserver) {
-		this.errorObserver = errorObserver;
+		throw new GraphLangSyntaxExceptionRuntime( arg4, arg2, arg3);
 	}
 
 }

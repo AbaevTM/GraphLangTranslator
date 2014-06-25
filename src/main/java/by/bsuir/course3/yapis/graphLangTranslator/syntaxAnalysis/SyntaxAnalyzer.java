@@ -1,16 +1,19 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator.syntaxAnalysis;
 
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.ErrorObserver;
+import java.io.IOException;
+
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public interface SyntaxAnalyzer extends ErrorObserver{
+public interface SyntaxAnalyzer {
 
-	public void init(String absolutePath);
+	public void init(String absolutePath) throws IOException;
 	
 	public ParseTree getTree();
 	
-	public boolean analyze();
+	public void analyze() throws GraphLangSyntaxException;
 	
 	public void setLogger( Logger logger);
 	

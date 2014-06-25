@@ -1,6 +1,9 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator;
 
+import java.io.IOException;
+
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.semanticAnalysis.SemanticAnalyzer;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.syntaxAnalysis.SyntaxAnalyzer;
@@ -19,6 +22,17 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 	
 	private SemanticAnalyzer semanticAnalyzer;
 	
+	
+	@Override
+	public SyntaxAnalyzer getSyntaxAnalyzer() {
+		return syntaxAnalyzer;
+	}
+
+	@Override
+	public SemanticAnalyzer getSemanticAnalyzer() {
+		return semanticAnalyzer;
+	}
+
 	@Override
 	public void setSyntaxAnalyzer(SyntaxAnalyzer syntaxAnalyzer) {
 		this.syntaxAnalyzer = syntaxAnalyzer;
@@ -30,21 +44,17 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 	}
 
 	@Override
-	public void translate() {
+	public void translate() throws GraphLangSyntaxException, IOException{
 		if(isReadyToTranslate()){
 			syntaxAnalyzer.setLogger(logger);
 			syntaxAnalyzer.init(sourcePath);
-			if( syntaxAnalyzer.analyze()){
-				ParseTree parseTree = syntaxAnalyzer.getTree();
-				semanticAnalyzer.setLogger(logger);
-				semanticAnalyzer.init(parseTree);
-				if( semanticAnalyzer.analyze()){
-					logger.addSystemMessage(StringConstant.MESSAGE_EXIT_COMILATION_SUCCESSFUL.getText());
-					return;
-				}
-			}
+			syntaxAnalyzer.analyze();
+			ParseTree parseTree = syntaxAnalyzer.getTree();
+			semanticAnalyzer.setLogger(logger);
+			semanticAnalyzer.init(parseTree);
+			semanticAnalyzer.analyze();
+			logger.addSystemMessage(StringConstant.TRANSLATION_EXIT_SUCCESSFUL.getString());
 		}
-		logger.addSystemMessage(StringConstant.MESSAGE_EXIT_COMILATION_UNSUCCESSFUL.getText());
 		return;
 	}
 

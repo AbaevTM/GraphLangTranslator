@@ -3,6 +3,7 @@ package main.java.by.bsuir.course3.yapis.graphLangTranslator.common;
 public enum StringConstant {
 	////COMMON
 	SEPARATOR_SPACE (" "),
+	SEPARATOR_STARS ("*****"),
 	SEPARATOR_COLON (":"),
 	
 	////LOGGING
@@ -14,20 +15,23 @@ public enum StringConstant {
 	STR_LINE("\tline"),	
 	STR_COLON("\tcolon"),
 	
-	////MESSAGE
-	MESSAGE_NEED_TO_SET_FILE_NAME("as the first parameter you should set path to the source file."),
-		////SYNTAX
-		MESSAGE_START_SYNTAX_ANALYSIS("start of syntax analysis"),
-		MESSAGE_FOR_FILE("for file :"),
-		MESSAGE_SUCCESSFUL_END_SYNTAX_ANALYSIS("end of syntax analysis (successful)"),
-		MESSAGE_UNSUCCESSFUL_END_SYNTAX_ANALYSIS("end of syntax analysis (unsuccessful)"),		
-		MESSAGE_SOURCE_FILE_DOESNOT_EXIST("source graphLang file doesn't exist."),
-		MESSAGE_FILE_CANNOT_BE_OPENED("source graphLang file cannot be opened"),
-	MESSAGE_EXIT_COMILATION_SUCCESSFUL("exit compilation successfully"),
-	MESSAGE_EXIT_COMILATION_UNSUCCESSFUL("exit compilation unsuccessfully"),
+	////FILE
+	FILE_NEED_TO_SET_FILE_NAME("as the first parameter you should pass path to the source file."),
+	FILE_FOR_FILE("for file :"),
+	FILE_SOURCE_FILE_DOESNOT_EXIST("source graphLang file doesn't exist."),
+	FILE_CANNOT_BE_OPENED("source graphLang file cannot be opened"),
+	
+	////SYNTAX ANALYSIS
+	SYNTAX_ANALYSIS_START("start of syntax analysis"),
+	SYNTAX_ANALYSIS_SUCCESSFUL_END("exit syntax analysis successfully"),
+	SYNTAX_ANALYSIS_UNSUCCESSFUL_END("exit syntax analysis unsuccessfully"),		
+	
+	////TRANSLATION
+	TRANSLATION_EXIT_SUCCESSFUL("exit translation successfully"),
+	TRANSLATION_EXIT_UNSUCCESSFUL("exit translation unsuccessfully"),
 	
 	////PATH
-	TRANSLATED_SOURCE_PATH("\\source\\GraphLangProgram.java"),
+	PATH_TRANSLATED_SOURCE_PATH("\\source\\GraphLangProgram.java"),
 	
 	;
 	
@@ -37,12 +41,12 @@ public enum StringConstant {
 
 	private String text;
 
-	public String getText() {
+	public String getString() {
 		return text;
 	}
 	
 	@Override
 	public String toString(){
-		return getText();
+		return getString();
 	}
 }

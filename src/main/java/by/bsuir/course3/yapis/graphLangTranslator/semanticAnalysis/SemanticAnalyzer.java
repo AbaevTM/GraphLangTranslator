@@ -9,7 +9,7 @@ public interface SemanticAnalyzer {
 	
 	public void init(ParseTree parseTree);
 	
-	public boolean analyze();
+	public void analyze();
 	
 	public void setLogger( Logger logger);
 }

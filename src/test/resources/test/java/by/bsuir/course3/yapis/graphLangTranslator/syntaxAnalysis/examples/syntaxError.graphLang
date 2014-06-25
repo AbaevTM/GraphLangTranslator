@@ -1,0 +1,60 @@
+^^
+	GraphLang program example1.
+^^
+Boolean main (){	
+Void print(String text){
+	superNativePrint(text);
+	return;
+}
+# Real maxSquare = 10;
+@ # Peal pi = 3.14;
+Int radius = 5;
+Int square = radius*radius*pi;
+Int a;
+Int b;
+Int c;
+Int d = 1;
+Int e = 2;
+Int f = 3;
+a,b,c = d,e,f;
+if(square <= maxSquare){
+	print("True");
+	return true;
+} 
+else{
+	print("False");
+	return false;
+}
+Boolean someFlag;
+	{
+		~~Testing while
+		while(true){
+				print("Endless cycle");
+			}
+		~~Testing until	
+			{
+				print("Runs only ones");
+			}
+			until(false)
+		~~Testing for
+		Int counter = 5;
+		Int maxCounterValue;
+		maxCounterValue = 10;
+		for(| counter < maxCounterValue | counter = counter - 1;)
+			{
+				print(counter);
+			}		
+		someFlag = true;
+	}
+	~~Testing switch1
+	switch(someFlag){
+		[true]{
+			print("Some flag is true");
+		}
+		[false]{
+			print("Some flag is false");
+		}
+	}
+	return false;
+}
+

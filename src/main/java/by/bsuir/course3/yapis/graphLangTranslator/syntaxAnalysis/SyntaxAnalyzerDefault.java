@@ -4,17 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.GraphLangErrorListener;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.GraphLangErrorListenerDefault;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxExceptionRuntime;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.syntaxAnalysis.parsing.GraphLangGrammarLexer;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.syntaxAnalysis.parsing.GraphLangGrammarParser;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-
 
 public class SyntaxAnalyzerDefault implements SyntaxAnalyzer {
 	
@@ -27,15 +27,13 @@ public class SyntaxAnalyzerDefault implements SyntaxAnalyzer {
 	private String sourcePath;
 	
 	private boolean initFlag = false;
-	
-	private boolean successfulParsing = false;
-	
+
 	public SyntaxAnalyzerDefault() {
 		super();
 	}
 
 	@Override
-	public void init(String absolutePath) {
+	public void init(String absolutePath) throws IOException {
 		try {
 			sourcePath = absolutePath;
 			initFlag = false;
@@ -47,38 +45,30 @@ public class SyntaxAnalyzerDefault implements SyntaxAnalyzer {
 			parser = new GraphLangGrammarParser(tokens);
 			lexer.removeErrorListeners();
 			parser.removeErrorListeners();
-			GraphLangErrorListener errorListener = new GraphLangErrorListenerDefault();
-			errorListener.setLogger(logger);
-			errorListener.setErrorObserver(this);
+			parser.setErrorHandler(new BailErrorStrategy());
+			GraphLangErrorListenerDefault errorListener = new GraphLangErrorListenerDefault();
 			parser.addErrorListener(errorListener);
 			lexer.addErrorListener(errorListener);
 			initFlag = true;
 		} catch (IOException exc){
-			logger.addSystemMessage(StringConstant.MESSAGE_FILE_CANNOT_BE_OPENED.getText());
-		}		
+			throw exc;
+		} 	
 	}
 
 	@Override
-	public boolean analyze() {
+	public void analyze() throws GraphLangSyntaxException {
 		try{
 			if(initFlag){
-				logger.addSystemMessage(StringConstant.MESSAGE_START_SYNTAX_ANALYSIS.getText());
-				logger.addSystemMessage(StringConstant.MESSAGE_FOR_FILE.getText() +
-						StringConstant.SEPARATOR_SPACE.getText() +
+				logger.addSystemMessage(StringConstant.FILE_FOR_FILE.getString() +
+						StringConstant.SEPARATOR_SPACE.getString() +
 						sourcePath);
-				successfulParsing = true;
+				logger.addSystemMessage(StringConstant.SYNTAX_ANALYSIS_START.getString());
 				parseTree = parser.document();
-				if (successfulParsing){
-					logger.addSystemMessage(StringConstant.MESSAGE_SUCCESSFUL_END_SYNTAX_ANALYSIS.getText());
-					return true;
-				}				
+				logger.addSystemMessage(StringConstant.SYNTAX_ANALYSIS_SUCCESSFUL_END.getString());				
 			}
-			logger.addSystemMessage(StringConstant.MESSAGE_UNSUCCESSFUL_END_SYNTAX_ANALYSIS.getText());
-			return false;
-		} catch (RecognitionException exc){
-			logger.addSystemMessage(StringConstant.MESSAGE_UNSUCCESSFUL_END_SYNTAX_ANALYSIS.getText());
-			return false;
-		}
+		} catch (GraphLangSyntaxExceptionRuntime exc){
+			throw new GraphLangSyntaxException(exc);
+		}	
 	}
 
 	@Override
@@ -89,11 +79,6 @@ public class SyntaxAnalyzerDefault implements SyntaxAnalyzer {
 	@Override
 	public ParseTree getTree() {
 		return parseTree;
-	}
-
-	@Override
-	public void errorOccurred() {
-		successfulParsing = false;
 	}
 
 }
