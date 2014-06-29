@@ -33,6 +33,12 @@ public enum StringConstant {
 	////PATH
 	PATH_TRANSLATED_SOURCE_PATH("\\source\\GraphLangProgram.java"),
 	
+	////TYPE
+	TYPE_ARC_ARROW_BEGIN(" ---"),
+	TYPE_ARC_ARROW_END("--> "),
+	TYPE_GRAPH_GRAPH("Graph:"),
+	TYPE_GRAPH_NODES("Nodes:"),
+	TYPE_GRAPH_ARCS("Arcs:"),
 	;
 	
 	private StringConstant(String text) {
