@@ -22,6 +22,11 @@ public class TypeNode extends TypeUndefinedOperationsAdapter< TypeNode, Integer>
 	}
 
 	@Override
+	public String toString(){
+		return content.toString();
+	}
+	
+	@Override
 	public TypeBoolean operatorEqual(TypeNode secondOperand)
 			throws UndefinedOperationException {
 		if( this.content.equals( secondOperand.content )){

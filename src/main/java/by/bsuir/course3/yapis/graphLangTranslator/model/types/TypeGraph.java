@@ -3,6 +3,7 @@ package main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types;
 import java.util.HashSet;
 import java.util.Set;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.exception.UndefinedOperationException;
+import static main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant.*;
 
 public class TypeGraph extends TypeUndefinedOperationsAdapter<TypeGraph, String> {
 	
@@ -26,8 +27,22 @@ private static Integer graphId = 0;
 	
 	@Override
 	public String getContent() {
-		//TODO
-		return null;
+		String result;
+		result = TYPE_GRAPH_GRAPH.toString() + content.toString() + '\n';
+		result += TYPE_GRAPH_NODES.toString() + '\n';
+		for( TypeNode node : nodes){
+			result += node.toString() + '\n';
+		}
+		result += TYPE_GRAPH_ARCS.toString() + '\n';
+		for( TypeArc arc : arcs){
+			result += arc.toString()+ '\n';
+		}
+		return result;
+	}
+	
+	@Override
+	public String toString(){
+		return getContent();
 	}
 
 	@Override 

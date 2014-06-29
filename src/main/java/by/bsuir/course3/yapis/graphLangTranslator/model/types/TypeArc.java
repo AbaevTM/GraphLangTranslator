@@ -49,6 +49,11 @@ public class TypeArc extends TypeUndefinedOperationsAdapter<TypeArc, String>{
 				secondNode.getContent().toString();
 		return result;
 	}
+	
+	@Override
+	public String toString(){
+		return getContent();
+	}
 
 	@Override
 	public TypeBoolean operatorEqual(TypeArc secondOperand)
