@@ -24,7 +24,18 @@ public enum StringConstant {
 	////SYNTAX ANALYSIS
 	SYNTAX_ANALYSIS_START("start of syntax analysis"),
 	SYNTAX_ANALYSIS_SUCCESSFUL_END("exit syntax analysis successfully"),
-	SYNTAX_ANALYSIS_UNSUCCESSFUL_END("exit syntax analysis unsuccessfully"),		
+	SYNTAX_ANALYSIS_UNSUCCESSFUL_END("exit syntax analysis unsuccessfully"),	
+	
+	////SYNTAX ANALYSIS
+	SEMANTIC_ANALYSIS_START("start of semantic analysis"),
+	SEMANTIC_ANALYSIS_SUCCESSFUL_END("exit semantic analysis successfully"),
+	SEMANTIC_ANALYSIS_UNSUCCESSFUL_END("exit semantic analysis unsuccessfully"),		
+	
+	////CODE GENERATION
+	CODE_GENEREATION_ANALYSIS_START("start of code generation"),
+	CODE_GENEREATION_SUCCESSFUL_END("exit code generation successfully"),
+	CODE_GENEREATION_UNSUCCESSFUL_END("exit code generation unsuccessfully"),		
+	
 	
 	////TRANSLATION
 	TRANSLATION_EXIT_SUCCESSFUL("exit translation successfully"),

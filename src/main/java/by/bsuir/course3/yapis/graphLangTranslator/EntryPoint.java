@@ -1,6 +1,8 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator;
 
 import java.io.IOException;
+
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.codeGeneration.CodeGeneratorDefault;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
@@ -24,10 +26,11 @@ public class EntryPoint {
 				graphLangTranslator = new GraphLangTranslatorDefault();
 				path = args[0];
 				graphLangTranslator.setSourcePath(path);
-				graphLangTranslator.setTranslatedSourcePath(StringConstant.PATH_TRANSLATED_SOURCE_PATH.getString());
+				graphLangTranslator.setOutputPath(StringConstant.PATH_TRANSLATED_SOURCE_PATH.getString());
 				graphLangTranslator.setLogger(logger);
 				graphLangTranslator.setSemanticAnalyzer(new SemanticAnalyzerDefault());
 				graphLangTranslator.setSyntaxAnalyzer(new SyntaxAnalyzerDefault());
+				graphLangTranslator.setCodeGenerator(new CodeGeneratorDefault());
 				graphLangTranslator.translate();
 			}
 			else{
@@ -61,10 +64,11 @@ public class EntryPoint {
 				graphLangTranslator = new GraphLangTranslatorDefault();
 				path = args[0];
 				graphLangTranslator.setSourcePath(path);
-				graphLangTranslator.setTranslatedSourcePath(StringConstant.PATH_TRANSLATED_SOURCE_PATH.getString());
+				graphLangTranslator.setOutputPath(StringConstant.PATH_TRANSLATED_SOURCE_PATH.getString());
 				graphLangTranslator.setLogger(logger);
 				graphLangTranslator.setSemanticAnalyzer(new SemanticAnalyzerDefault());
 				graphLangTranslator.setSyntaxAnalyzer(new SyntaxAnalyzerDefault());
+				graphLangTranslator.setCodeGenerator(new CodeGeneratorDefault());
 				graphLangTranslator.translate();
 			}
 			else{

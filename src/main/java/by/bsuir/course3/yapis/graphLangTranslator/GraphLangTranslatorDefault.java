@@ -1,7 +1,7 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator;
 
 import java.io.IOException;
-
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.codeGeneration.CodeGenerator;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.errorHandling.exception.GraphLangSyntaxException;
 import main.java.by.bsuir.course3.yapis.graphLangTranslator.logging.Logger;
@@ -14,7 +14,7 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 
 	private String sourcePath;
 	
-	private String translatedSourcePath;
+	private String outputPath;
 	
 	private Logger logger;
 
@@ -22,6 +22,7 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 	
 	private SemanticAnalyzer semanticAnalyzer;
 	
+	private CodeGenerator codeGenerator;
 	
 	@Override
 	public SyntaxAnalyzer getSyntaxAnalyzer() {
@@ -51,8 +52,13 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 			syntaxAnalyzer.analyze();
 			ParseTree parseTree = syntaxAnalyzer.getTree();
 			semanticAnalyzer.setLogger(logger);
-			semanticAnalyzer.init(parseTree);
+			semanticAnalyzer.setParseTree(parseTree);
 			semanticAnalyzer.analyze();
+//			GeneratingTreeNode generatingTreeNode = semanticAnalyzer.getGeneratingTree();
+//			codeGenerator.setLogger(logger);
+//			codeGenerator.setOutputPath(outputPath);
+//			codeGenerator.setGeneratingTree(generatingTreeNode);
+//			codeGenerator.generateCode();
 			logger.addSystemMessage(StringConstant.TRANSLATION_EXIT_SUCCESSFUL.getString());
 		}
 		return;
@@ -63,12 +69,14 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 				semanticAnalyzer != null &&
 				syntaxAnalyzer != null &&
 				sourcePath != null &&
-				translatedSourcePath != null;
+				outputPath != null &&
+				codeGenerator != null
+				;
 	}
 	
 	@Override
-	public void setTranslatedSourcePath(String translatedSourcePath) {
-		this.translatedSourcePath = translatedSourcePath;
+	public void setOutputPath(String outputPath) {
+		this.outputPath = outputPath;
 	}
 
 	@Override
@@ -79,6 +87,16 @@ public class GraphLangTranslatorDefault implements GraphLangTranslator {
 	@Override
 	public void setSourcePath(String sourcePath) {
 		this.sourcePath = sourcePath;
+	}
+
+	@Override
+	public void setCodeGenerator(CodeGenerator codeGenerator) {
+		this.codeGenerator = codeGenerator;
+	}
+
+	@Override
+	public CodeGenerator getCodeGenerator() {
+		return codeGenerator;
 	}
 
 }
