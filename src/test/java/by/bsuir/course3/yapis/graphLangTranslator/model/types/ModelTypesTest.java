@@ -1,14 +1,16 @@
 package test.java.by.bsuir.course3.yapis.graphLangTranslator.model.types;
 
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeArc;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeBoolean;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeGraph;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeInt;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeNode;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeReal;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.TypeString;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.exception.UndefinedOperationException;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeArc;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeBoolean;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeGraph;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeInt;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeNode;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeReal;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.TypeString;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.exception.UndefinedOperationException;
+
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ModelTypesTest {

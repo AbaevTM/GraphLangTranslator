@@ -1,28 +1,9 @@
 package main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types;
 
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.exception.UndefinedOperationException;
+public interface Type {
 
-public interface Type<ReturnType, ContentType> {
-
-	public ContentType getContent();
+	public boolean isOperationDefined( Operation operation );
 	
-	public ReturnType operatorPlus ( ReturnType secondOperand ) throws UndefinedOperationException;
+	public boolean isCastPermitted ( Type type );
 	
-	public ReturnType operatorMinus ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public ReturnType operatorDevision ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public ReturnType operatorMultiplication ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorLessOrEqual ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorLess ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorGreaterOrEqual ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorGreater ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorEqual ( ReturnType secondOperand ) throws UndefinedOperationException;
-	
-	public TypeBoolean operatorNotEqual ( ReturnType secondOperand ) throws UndefinedOperationException;
 }

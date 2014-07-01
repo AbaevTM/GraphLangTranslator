@@ -1,8 +1,9 @@
-package main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types;
+package main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types;
 
 import java.util.HashSet;
 import java.util.Set;
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.exception.UndefinedOperationException;
+
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.exception.UndefinedOperationException;
 import static main.java.by.bsuir.course3.yapis.graphLangTranslator.common.StringConstant.*;
 
 public class TypeGraph extends TypeUndefinedOperationsAdapter<TypeGraph, String> {

@@ -1,6 +1,6 @@
-package main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types;
+package main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types;
 
-import main.java.by.bsuir.course3.yapis.graphLangTranslator.model.types.exception.UndefinedOperationException;
+import main.java.by.bsuir.course3.yapis.graphLangTranslator.output.types.exception.UndefinedOperationException;
 
 public abstract class TypeUndefinedOperationsAdapter<ReturnType, ContentType> implements Type<ReturnType, ContentType>{
 
